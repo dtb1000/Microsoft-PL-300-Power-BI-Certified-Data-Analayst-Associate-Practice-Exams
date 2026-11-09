@@ -1,6 +1,6 @@
 # PL-300 Mock Exams
 
-Five free, timed, interactive practice exams for **Microsoft Exam PL-300: Microsoft Power BI Data Analyst**. Each exam runs in the browser as a single HTML file, with no installation, sign-in or server-side code.
+Ten free, timed, interactive practice exams for **Microsoft Exam PL-300: Microsoft Power BI Data Analyst**. Each exam runs in the browser as a single HTML file, with no installation, sign-in or server-side code.
 
 **Currency of the material:** The questions follow the PL-300 'Skills measured as of April 20, 2026.' They were last reviewed on **9 November 2026**, against the official study guide (page last updated 30 October 2026). At that point no newer skills outline had been announced. The material is intended to be current through **December 2026**, but Microsoft updates the exam periodically. Check the official study guide (https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/pl-300) before relying on it after that date.
 
@@ -27,9 +27,14 @@ Five free, timed, interactive practice exams for **Microsoft Exam PL-300: Micros
 |[Mock Exam 3](exams/mock-exam-3.html)|Contoso Outdoor Retail|9|12|13|6|
 |[Mock Exam 4](exams/mock-exam-4.html)|Litware Logistics|10|15|9|6|
 |[Mock Exam 5](exams/mock-exam-5.html)|Proseware Clinical Research|10|10|11|9|
-|**All five**||**51 (25.5%)**|**57 (28.5%)**|**55 (27.5%)**|**37 (18.5%)**|
+|[Mock Exam 6](exams/mock-exam-6.html)|Tailspin Toys|10|10|11|9|
+|[Mock Exam 7](exams/mock-exam-7.html)|Woodgrove Bank|12|11|10|7|
+|[Mock Exam 8](exams/mock-exam-8.html)|Alpine Ski House|10|10|11|9|
+|[Mock Exam 9](exams/mock-exam-9.html)|Wide World Importers|10|10|11|9|
+|[Mock Exam 10](exams/mock-exam-10.html)|Lamna Healthcare|10|10|11|9|
+|**All ten**||**103 (25.8%)**|**108 (27.0%)**|**109 (27.3%)**|**80 (20.0%)**|
 
-Across all 200 questions, the mix matches Microsoft's published domain weights: 25–30% for each of the first three domains and 15–20% for Manage and secure. Individual exams vary, so take all five for balanced coverage.
+Across all 400 questions, the mix matches Microsoft's published domain weights: 25–30% for each of the first three domains and 15–20% for Manage and secure. Mocks 6–10 each stay close to these weights; Mocks 1–5 vary more, so take several exams for balanced coverage.
 
 Each exam has:
 
@@ -40,7 +45,7 @@ Each exam has:
 * **A results page** with your score out of 40, a breakdown by domain, and a colour-coded answer sheet.
 * **A review mode** showing your answer, the correct answer and an explanation for every question. You can filter it to the questions you missed.
 
-Question types: single choice (140), goal series Yes/No (15), Yes/No statements (15), code completion with DAX dropdowns (13), multiple choice "choose two/three" (12), sequence (4) and matching (1).
+Question types: single choice (286), code completion with DAX or Power Query (M) dropdowns (31), goal series Yes/No (30), Yes/No statements (27), multiple choice "choose two/three" (18), sequence (6) and matching (2).
 
 ## How to use the exams
 
@@ -49,7 +54,7 @@ Question types: single choice (140), goal series Yes/No (15), Yes/No statements 
 1. Push this repository to GitHub.
 2. Go to **Settings > Pages**.
 3. Under **Build and deployment**, set **Source** to *Deploy from a branch*, choose `main` and `/ (root)`, and select **Save**.
-4. After a minute, open `https://<your-username>.github.io/<repository-name>/`. The landing page links to all five exams.
+4. After a minute, open `https://<your-username>.github.io/<repository-name>/`. The landing page links to all ten exams.
 
 ### Option 2: Run locally
 
@@ -69,7 +74,7 @@ If your browser blocks storage for local files, the exams still work but progres
 5. Answer the goal series, then the case study, and select **Finish exam**.
 6. Read your score and domain breakdown, then select **Review answers**. Selecting a circle on the results answer sheet jumps to that question's explanation.
 
-**Suggested schedule:** one mock a day, marked straight away, with the following review spent on your weakest domain. Aim for **30 or more out of 40** before exam day. Mock 5 is designed as a final dress rehearsal.
+**Suggested schedule:** one mock a day, marked straight away, with the following review spent on your weakest domain. Aim for **30 or more out of 40** before exam day. Mock 10 is designed as a final dress rehearsal.
 
 **Progress:** answers, flags and the remaining time are saved in your browser's local storage after every change. You can close the page and resume later. **Retake exam** clears the attempt.
 
@@ -89,7 +94,7 @@ If your browser blocks storage for local files, the exams still work but progres
 * [**Exam scoring and score reports**](https://learn.microsoft.com/en-us/credentials/certifications/exam-scoring-reports), for the 700 pass mark, partial credit and the no-penalty-for-guessing rule.
 * **Power BI and Microsoft Fabric documentation on Microsoft Learn**, for feature behaviour such as storage modes, DAX functions, RLS, gateways, refresh limits, Copilot and visual calculations.
 
-All questions, scenarios and company names are original practice material written for this project. They are **not** taken from the live exam, and no exam content or "brain dumps" were used. The companies in the case studies (Northwind, Fabrikam, Contoso, Litware, Proseware) are Microsoft's usual fictitious example names.
+All questions, scenarios and company names are original practice material written for this project. They are **not** taken from the live exam, and no exam content or "brain dumps" were used. The companies in the case studies (Northwind, Fabrikam, Contoso, Litware, Proseware, Tailspin Toys, Woodgrove Bank, Alpine Ski House, Wide World Importers and Lamna Healthcare) are Microsoft's usual fictitious example names.
 
 ## Date range of the referenced material
 
@@ -99,12 +104,13 @@ All questions, scenarios and company names are original practice material writte
 |Official study guide last updated (as checked)|30 October 2026|
 |Exam scoring page last updated (as checked)|27 May 2025|
 |Feature behaviour described in explanations|As documented on Microsoft Learn, checked **November 2026**|
+|Mocks 6–10 written|**9 November 2026**|
 |Last full review of all questions and answers|**9 November 2026**|
 |Intended to remain current until|**December 2026**, unless Microsoft publishes a new skills outline earlier|
 
 Scope decisions made during the November 2026 review:
 
-* **Q\&A visual removed.** The Q\&A feature is not in the April 2026 skills measured, and community reports say it is retiring in December 2026. Questions that relied on it were replaced, and it no longer appears as an answer option.
+* **Q\&A visual removed.** The Q\&A feature is not in the April 2026 skills measured, and community reports say it is retiring in December 2026. Questions that relied on it were replaced, and it no longer appears as an answer option. Mocks 6–10 were written without it.
 * **Quick insights removed** as an answer option, because it is not in the April 2026 skills measured.
 * **Copilot** questions assume a paid Fabric capacity (F2 or higher) or Premium P capacity, with Copilot enabled by the tenant admin.
 * **Direct Lake**, **visual calculations**, **calculation groups in Power BI Desktop** and **DAX query view** are treated as current features, because the skills outline lists them.
@@ -130,18 +136,19 @@ None of the issues below stops an exam from working; they are known gaps between
 ### Content and display
 
 7. **Answers are visible in the page source.** The exams are self-study tools and are not protected against peeking.
-8. **The domain mix varies between exams.** For example, Mock 4 has 15 Model questions and 6 Manage questions. Only the full set of five matches the official weights.
-9. **Fonts load from Google Fonts.** Offline, the pages fall back to system fonts; nothing else needs a network connection.
-10. **Exhibit diagrams are scaled to fit.** On small phone screens, labels in the case-study diagrams become small. Zoom in, or use a tablet or laptop for the case studies.
+8. **The domain mix varies between exams.** Mocks 1–5 vary most; for example, Mock 4 has 15 Model questions and 6 Manage questions. Mocks 6–10 stay close to the official weights, although most have 9 Manage questions (22.5%), one above the 15–20% range.
+9. **Correct answers in Mocks 1–5 are not evenly spread across the letters.** In single-choice questions, B is correct far more often than A, C or D (25 of 30 times in Mock 4). Mocks 6–10 balance answer positions across A–D.
+10. **Fonts load from Google Fonts.** Offline, the pages fall back to system fonts; nothing else needs a network connection.
+11. **Exhibit diagrams are scaled to fit.** On small phone screens, labels in the case-study diagrams become small. Zoom in, or use a tablet or laptop for the case studies.
 
 ### Accessibility
 
-11. **The page re-renders after each answer.** Keyboard focus is restored, but screen readers may re-announce content. The exams have not been tested with a screen reader.
+12. **The page re-renders after each answer.** Keyboard focus is restored, but screen readers may re-announce content. The exams have not been tested with a screen reader.
 
 ### Interface details
 
-12. **Sequence questions block reusing an action.** An action already chosen for one step is greyed out for the others, and you can't pick the same action twice. That is correct for these questions, but it differs from the drag-and-drop interface of the live exam.
-13. **English only, with no in-page theme switch.** The pages follow your operating system's light or dark mode.
+13. **Sequence questions block reusing an action.** An action already chosen for one step is greyed out for the others, and you can't pick the same action twice. That is correct for these questions, but it differs from the drag-and-drop interface of the live exam.
+14. **English only, with no in-page theme switch.** The pages follow your operating system's light or dark mode.
 
 To report a new bug, see [Reporting a mistake](#reporting-a-mistake).
 
@@ -153,13 +160,18 @@ pl300-mock-exams/
 ├── LICENSE                MIT license
 ├── CHANGELOG.md           Release notes and review changes
 ├── .nojekyll              Tells GitHub Pages to serve files as they are
-├── index.html             Landing page that links to the five exams
+├── index.html             Landing page that links to the ten exams
 └── exams/
     ├── mock-exam-1.html   Case study: Northwind Pharma Distribution
     ├── mock-exam-2.html   Case study: Fabrikam Biotech Labs
     ├── mock-exam-3.html   Case study: Contoso Outdoor Retail
     ├── mock-exam-4.html   Case study: Litware Logistics
-    └── mock-exam-5.html   Case study: Proseware Clinical Research
+    ├── mock-exam-5.html   Case study: Proseware Clinical Research
+    ├── mock-exam-6.html   Case study: Tailspin Toys
+    ├── mock-exam-7.html   Case study: Woodgrove Bank
+    ├── mock-exam-8.html   Case study: Alpine Ski House
+    ├── mock-exam-9.html   Case study: Wide World Importers
+    └── mock-exam-10.html  Case study: Lamna Healthcare
 ```
 
 Each exam file is self-contained, with its HTML, CSS, JavaScript, questions and SVG diagrams all inline. To edit a question, search the file for its number, for example `{n:12,`. Every question object has:
@@ -171,15 +183,19 @@ Each exam file is self-contained, with its HTML, CSS, JavaScript, questions and 
 * `why`: the explanation.
 * `d`: its domain, where `P`, `M`, `V` and `S` are the four domains in order.
 
+In Mocks 6–10 (`shuffle:true` in the `EXAM` object), answer positions are rebalanced when the page loads. The order of options on screen can therefore differ from the order in the file; `answer` always refers to the order in the file, and the on-screen letters are recalculated to match.
+
 ## Testing
 
-Before release, every exam was tested end to end in Chromium with Playwright:
+Before release, all ten exams were tested end to end in Chromium with Playwright:
 
 * All 40 questions answered correctly through the real interface (radio buttons, checkboxes, dropdowns and Yes/No buttons) scores 40/40 in strict mode.
 * A fully blank attempt scores 0 in partial-credit mode, and all 40 review cards render.
 * Section locks, goal-series locks, the cap on "choose two/three" selections, flagging, jumping via the answer sheet, saving and resuming after a reload, and automatic submission when time runs out all work.
 * No JavaScript errors were raised.
 * Layout was checked on a 1280-pixel desktop and a 390-pixel phone, in light and dark mode.
+
+The question data was also checked automatically: every answer index is valid, every code blank has an answer, and the questions in Mocks 6–10 were compared with all 400 questions to make sure none is repeated. For Mocks 6–10, the balancing of answer positions was checked to confirm that no correct answer or explanation changed.
 
 ## Reporting a mistake
 
