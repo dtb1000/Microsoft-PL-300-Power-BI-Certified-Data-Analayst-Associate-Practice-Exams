@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0 (9 November 2026)
+
+Added Mock Exams 6–10 (200 new questions), written against the PL-300 skills measured as of April 20, 2026.
+
+- New case studies: Tailspin Toys, Woodgrove Bank, Alpine Ski House, Wide World Importers and Lamna Healthcare.
+- Mocks 6–10 balance answer positions for single-choice and "choose two/three" questions, so correct answers are spread evenly across A–D. Mocks 1–5 are unchanged.
+- "Choose two/three" options that contain DAX now display in a code font.
+- The landing page lists all ten exams. Mock 10 replaces Mock 5 as the suggested final dress rehearsal.
+- README updated for ten exams: new totals, question types, repository structure, the editing note on answer balancing, and a known limitation about answer letters in Mocks 1–5.
+
 ## 1.0.0 (9 November 2026)
 
 First public release: five interactive mock exams of 40 questions each, written against the PL-300 skills measured as of April 20, 2026.
