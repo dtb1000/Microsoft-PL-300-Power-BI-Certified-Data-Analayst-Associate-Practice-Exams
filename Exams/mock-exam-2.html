@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PL-300 Mock Exam 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F6FA; --surface:#FFFFFF; --ink:#15223A; --muted:#56647C; --rule:#D3DAE6;
+  --accent:#1E5BBD; --accent-ink:#FFFFFF; --tint:#E5EDFA; --flag:#B97F00; --flag-tint:#FBF0D2;
+  --good:#1D7448; --good-tint:#E1F2E8; --bad:#B3261E; --bad-tint:#FBE5E3; --zone:#ECF0F6; --code-bg:#EDF1F7;
+  --font:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1625; --surface:#152035; --ink:#E5EBF5; --muted:#9BA9C0; --rule:#2B3A57;
+    --accent:#78A8F5; --accent-ink:#0E1625; --tint:#1C2D4D; --flag:#F2C14E; --flag-tint:#3A3018;
+    --good:#5BC891; --good-tint:#16331F; --bad:#F2867B; --bad-tint:#3B1E1C; --zone:#1A2740; --code-bg:#1B2840;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1625; --surface:#152035; --ink:#E5EBF5; --muted:#9BA9C0; --rule:#2B3A57;
+  --accent:#78A8F5; --accent-ink:#0E1625; --tint:#1C2D4D; --flag:#F2C14E; --flag-tint:#3A3018;
+  --good:#5BC891; --good-tint:#16331F; --bad:#F2867B; --bad-tint:#3B1E1C; --zone:#1A2740; --code-bg:#1B2840;
+  color-scheme:dark;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+code{font-family:var(--mono);font-size:.86em;background:var(--code-bg);padding:.08em .35em;border-radius:4px}
+
+/* Header */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-weight:700;font-size:16px;line-height:1.25}
+.brand span{display:block;font-weight:400;font-size:13px;color:var(--muted)}
+.clock{text-align:right;line-height:1.2}
+.clock span{display:block;font-size:12px;color:var(--muted)}
+.clock strong{font-size:22px;font-variant-numeric:tabular-nums}
+.clock.low strong{color:var(--flag)}
+
+/* Layout */
+.layout{max-width:1180px;margin:0 auto;padding:28px 20px 64px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:start}
+.main{min-width:0;max-width:760px}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px)}
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:28px;padding-top:20px}
+  .side{position:static}
+}
+
+/* Typography */
+h1{font-size:clamp(38px,6vw,60px);line-height:1.05;margin:0 0 14px;letter-spacing:-.01em}
+h2{font-size:24px;line-height:1.25;margin:0 0 10px}
+h3{font-size:18px;margin:22px 0 8px}
+.lead{font-size:19px;color:var(--muted);margin:0 0 24px;max-width:60ch}
+p{margin:0 0 14px}
+
+/* Buttons */
+.btn{font:inherit;font-weight:700;font-size:16px;padding:11px 20px;border-radius:9px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;min-height:46px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.small{font-size:14px;padding:7px 12px;min-height:36px}
+.btn.quiet{border-color:var(--rule);color:var(--muted)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:28px}
+.actions .spacer{flex:1}
+
+/* Intro */
+.rules{list-style:none;padding:0;margin:0 0 26px;border-top:1px solid var(--rule)}
+.rules li{padding:14px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:150px 1fr;gap:16px}
+.rules b{display:block}
+@media (max-width:560px){.rules li{grid-template-columns:1fr;gap:2px}}
+fieldset{border:0;padding:0;margin:0}
+.mode legend{font-weight:700;margin-bottom:8px}
+.choice{display:flex;gap:12px;align-items:flex-start;padding:10px 0;cursor:pointer}
+.choice input{margin-top:5px;accent-color:var(--accent);width:18px;height:18px}
+.choice small{display:block;color:var(--muted);font-size:15px}
+
+/* Question */
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px}
+.qnum{font-weight:700;font-size:15px;color:var(--muted);margin:0}
+.flagbtn{font:inherit;font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;border:1.5px solid var(--rule);background:transparent;color:var(--muted);cursor:pointer}
+.flagbtn[aria-pressed="true"]{border-color:var(--flag);background:var(--flag-tint);color:var(--ink)}
+.hint{font-size:15px;color:var(--muted);font-style:italic;margin:0 0 12px}
+.stem{font-size:19px;line-height:1.6;margin-bottom:18px}
+.opts{margin:0}
+.opt{position:relative;display:flex;gap:14px;align-items:flex-start;padding:13px 16px;margin:10px 0;border:1.5px solid var(--rule);border-radius:12px;background:var(--surface);cursor:pointer}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.opt:has(input:checked){border-color:var(--accent);background:var(--tint)}
+.opt:has(input:disabled){cursor:not-allowed;opacity:.55}
+.bub{flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--muted);display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--muted)}
+.bub.sq{border-radius:8px}
+.opt:has(input:checked) .bub{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.otext{padding-top:2px}
+.mono{font-family:var(--mono);font-size:14.5px;line-height:1.55;word-break:break-word}
+pre.code{font-family:var(--mono);font-size:14px;line-height:1.6;background:var(--code-bg);padding:14px 16px;border-radius:10px;overflow-x:auto;margin:0 0 18px;white-space:pre}
+mark.blank{background:var(--flag-tint);color:var(--ink);border:1px dashed var(--flag);border-radius:4px;padding:0 3px}
+.pick{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:center;margin:10px 0}
+.pick label{font-weight:700;font-size:15px}
+select{font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1.5px solid var(--rule);border-radius:9px;padding:10px 12px;width:100%;min-height:46px}
+@media (max-width:560px){.pick{grid-template-columns:1fr;gap:4px}}
+.actionlist{list-style:none;padding:0;margin:0 0 16px}
+.actionlist li{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--rule)}
+.actionlist li:last-child{border-bottom:0}
+.actionlist b{flex:none;width:22px}
+.yn{padding:12px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center}
+.yn p{margin:0}
+.ynopts{display:flex;gap:8px}
+.pill{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:64px;min-height:42px;padding:6px 14px;border:1.5px solid var(--rule);border-radius:999px;cursor:pointer;font-weight:700;background:var(--surface)}
+.pill input{position:absolute;opacity:0;pointer-events:none}
+.pill:has(input:checked){background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.pill:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+@media (max-width:560px){.yn{grid-template-columns:1fr}}
+.note{font-size:15px;color:var(--muted);margin-top:14px}
+
+/* Context panels */
+.panel{border:1.5px solid var(--rule);border-radius:12px;background:var(--surface);padding:16px 18px;margin-bottom:24px}
+.panel.goal{border-left:5px solid var(--flag)}
+.panel h2{font-size:18px;margin-bottom:6px}
+details.panel summary{font-weight:700;cursor:pointer;font-size:18px}
+details.panel[open] summary{margin-bottom:10px}
+.panel ul{padding-left:20px;margin:0 0 12px}
+.panel li{margin:4px 0}
+.exhibit{width:100%;height:auto;display:block;margin:6px 0 14px}
+.exhibit text{font-family:var(--font)}
+.x-title{font-weight:700;font-size:15px;fill:var(--ink)}
+.x-zone{fill:var(--zone);stroke:var(--rule)}
+.x-box{fill:var(--surface);stroke:var(--muted);stroke-width:1.25}
+.x-main{fill:var(--tint);stroke:var(--accent);stroke-width:2}
+.x-n{font-weight:700;font-size:13px;fill:var(--ink)}
+.x-s{font-size:11.5px;fill:var(--muted)}
+.x-zn{font-size:11.5px;font-weight:700;fill:var(--muted)}
+.x-line{fill:none;stroke:var(--muted);stroke-width:1.25}
+.x-ah{fill:var(--muted)}
+
+/* Answer sheet */
+.sheet{background:var(--surface);border:1.5px solid var(--rule);border-radius:14px;padding:18px}
+.sheet h2{font-size:17px;margin:0 0 4px}
+.sheet .sub{font-size:14px;color:var(--muted);margin:0 0 12px}
+.grp{margin:14px 0 0}
+.grp p{font-size:13px;font-weight:700;color:var(--muted);margin:0 0 8px}
+.cells{display:grid;grid-template-columns:repeat(8,1fr);gap:7px}
+.cell{aspect-ratio:1;width:100%;border-radius:50%;border:1.5px solid var(--muted);background:transparent;color:var(--ink);font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;padding:0;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.cell.part{background:linear-gradient(to top,var(--ink) 50%,transparent 50%);color:var(--ink)}
+.cell.part span{background:var(--surface);border-radius:4px;padding:0 2px;line-height:1.1}
+.cell.ans{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.cell.flag{box-shadow:0 0 0 3px var(--flag)}
+.cell.cur{outline:2px solid var(--accent);outline-offset:3px}
+.cell:disabled{cursor:default;opacity:.5;border-style:dashed}
+.cell.ok{background:var(--good);border-color:var(--good);color:var(--surface);opacity:1;border-style:solid}
+.cell.half{background:var(--flag);border-color:var(--flag);color:var(--surface);opacity:1;border-style:solid}
+.cell.no{background:var(--bad-tint);border-color:var(--bad);color:var(--bad);opacity:1;border-style:solid}
+.legend{list-style:none;padding:0;margin:16px 0 0;font-size:13px;color:var(--muted);display:grid;gap:6px}
+.legend li{display:flex;align-items:center;gap:8px}
+.dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--muted);flex:none}
+.dot.ans{background:var(--ink);border-color:var(--ink)}
+.dot.flag{box-shadow:0 0 0 2.5px var(--flag)}
+.dot.ok{background:var(--good);border-color:var(--good)}
+.dot.half{background:var(--flag);border-color:var(--flag)}
+.dot.no{background:var(--bad-tint);border-color:var(--bad)}
+.sheet .btn{width:100%;margin-top:16px}
+
+/* Results */
+.score{font-size:clamp(72px,14vw,128px);font-weight:700;line-height:.95;font-variant-numeric:tabular-nums;letter-spacing:-.02em;margin:6px 0 10px}
+.score small{font-size:.38em;color:var(--muted);font-weight:400;letter-spacing:0}
+.verdict{font-size:19px;margin:0 0 6px}
+.verdict.pass{color:var(--good)}
+.verdict.close{color:var(--flag)}
+.verdict.fail{color:var(--bad)}
+.domains{margin:28px 0 0;border-top:1px solid var(--rule)}
+.drow{display:grid;grid-template-columns:minmax(0,1fr) 84px;gap:6px 16px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.drow b{font-size:16px}
+.drow .val{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.track{grid-column:1 / -1;height:10px;border-radius:999px;background:var(--zone);overflow:hidden}
+.fill{height:100%;background:var(--accent);border-radius:999px}
+.fill.low{background:var(--bad)}
+
+/* Review */
+.filter{display:flex;gap:10px;align-items:center;margin:8px 0 18px;font-size:16px;cursor:pointer}
+.filter input{width:18px;height:18px;accent-color:var(--accent)}
+.rcard{border:1.5px solid var(--rule);border-left-width:6px;border-radius:12px;background:var(--surface);padding:16px 18px;margin:0 0 16px}
+.rcard.ok{border-left-color:var(--good)}
+.rcard.half{border-left-color:var(--flag)}
+.rcard.no{border-left-color:var(--bad)}
+.rtop{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:8px}
+.rtop b{font-size:15px;color:var(--muted)}
+.tag{font-size:14px;font-weight:700;padding:3px 10px;border-radius:999px}
+.tag.ok{background:var(--good-tint);color:var(--good)}
+.tag.half{background:var(--flag-tint);color:var(--ink)}
+.tag.no{background:var(--bad-tint);color:var(--bad)}
+.rstem{font-size:16.5px;margin:0 0 12px}
+.ans-grid{display:grid;grid-template-columns:140px minmax(0,1fr);gap:6px 14px;font-size:15.5px;margin:0 0 10px}
+.ans-grid dt{color:var(--muted)}
+.ans-grid dd{margin:0;font-weight:700}
+@media (max-width:560px){.ans-grid{grid-template-columns:1fr;gap:0}.ans-grid dd{margin-bottom:6px}}
+.why{font-size:15.5px;margin:0;padding-top:10px;border-top:1px solid var(--rule)}
+
+/* Dialog */
+dialog{border:1.5px solid var(--rule);border-radius:14px;background:var(--surface);color:var(--ink);max-width:460px;width:calc(100% - 40px);padding:24px}
+dialog::backdrop{background:rgba(8,14,26,.5)}
+dialog h2{font-size:21px}
+dialog .actions{margin-top:20px;justify-content:flex-end}
+@media (prefers-reduced-motion:no-preference){.opt,.pill,.cell{transition:background-color .12s,border-color .12s}}
+.pick.wide{grid-template-columns:1fr;gap:6px}
+.pick.wide label{font-weight:400;font-size:16px}
+.xcap{font-size:14px;color:var(--muted);margin:0 0 6px}
+.xwrap{overflow-x:auto;margin:0 0 18px}
+.xt{border-collapse:collapse;font-family:var(--mono);font-size:14px}
+.xt td{border:1px solid var(--rule);padding:6px 12px;background:var(--surface)}
+.xt tr:first-child td{background:var(--zone);font-weight:600}
+.foot{max-width:1180px;margin:0 auto;padding:0 20px 40px;color:var(--muted);font-size:14px}
+.foot p{max-width:70ch;border-top:1px solid var(--rule);padding-top:16px}
+.brand a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="bar"><div class="bar-in">
+  <div class="brand">PL-300 Mock Exam 2<span>Microsoft Power BI Data Analyst practice. <a href="../index.html">See all exams</a></span></div>
+  <div class="clock" id="clock" hidden><span>Time left</span><strong id="timer">80:00</strong></div>
+</div></header>
+<div id="app"></div>
+<footer class="foot"><p>Unofficial practice material, not affiliated with or endorsed by Microsoft. Written against the PL-300 skills measured as of April 20, 2026, and last reviewed on 9 November 2026.</p></footer>
+<dialog id="dlg"><h2 id="dlg-t"></h2><p id="dlg-p"></p><div class="actions"><button class="btn quiet" id="dlg-no" type="button">Cancel</button><button class="btn primary" id="dlg-ok" type="button">OK</button></div></dialog>
+
+<script>
+const MINUTES = 80, PASS = 30, L = 'ABCDE';
+const DOM = {P:'Prepare the data', M:'Model the data', V:'Visualize and analyze the data', S:'Manage and secure Power BI'};
+const SECTIONS = [
+  {name:'Section 1', label:'Questions 1–31', from:1, to:31, free:true},
+  {name:'Goal series', label:'Questions 32–34', from:32, to:34, free:false},
+  {name:'Case study', label:'Questions 35–40', from:35, to:40, free:true}
+];
+
+const EXAM = {num:2, caseTitle:'Fabrikam Biotech Labs', next:'Mock 3'};
+
+const Q11_SVG = `<svg class="exhibit" viewBox="0 0 760 160" role="img" aria-label="Exhibit: Customer, CustomerAccount, Account and Transactions tables joined in a chain on CustomerID and AccountID">
+<text x="24" y="30" class="x-title">Customer reaches Transactions only through CustomerAccount and Account</text>
+<text x="24" y="50" class="x-s">Lines show the join columns; direction and cardinality are for you to decide.</text>
+<rect x="24" y="72" width="150" height="72" rx="8" class="x-box"/><text x="40" y="96" class="x-n">Customer</text><text x="40" y="112" class="x-s">CustomerID</text><text x="40" y="128" class="x-s">CustomerName</text>
+<rect x="206" y="72" width="150" height="72" rx="8" class="x-box"/><text x="222" y="96" class="x-n">CustomerAccount</text><text x="222" y="112" class="x-s">CustomerID</text><text x="222" y="128" class="x-s">AccountID</text>
+<rect x="388" y="72" width="150" height="72" rx="8" class="x-box"/><text x="404" y="96" class="x-n">Account</text><text x="404" y="112" class="x-s">AccountID</text><text x="404" y="128" class="x-s">AccountType</text>
+<rect x="570" y="72" width="150" height="72" rx="8" class="x-box"/><text x="586" y="96" class="x-n">Transactions</text><text x="586" y="112" class="x-s">AccountID</text><text x="586" y="128" class="x-s">Amount</text>
+<g class="x-line"><path d="M174 108H206"/><path d="M356 108H388"/><path d="M538 108H570"/></g>
+</svg>`;
+
+const FB_SVG = `<svg class="exhibit" viewBox="0 0 760 440" role="img" aria-label="Fabrikam data environment: two Azure SQL databases and Entra security groups feed one Power BI workspace used by site staff, new analysts and an external auditor">
+<defs><marker id="fba" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="x-ah"/></marker></defs>
+<text x="24" y="30" class="x-title">Fabrikam: two Azure SQL sources, site groups, three audiences</text>
+<rect x="24" y="64" width="240" height="208" rx="8" class="x-zone"/><text x="40" y="86" class="x-zn">Azure SQL Database</text>
+<rect x="40" y="96" width="208" height="72" rx="8" class="x-box"/><text x="56" y="120" class="x-n">Sensor database</text><text x="56" y="136" class="x-s">One reading per second</text><text x="56" y="152" class="x-s">2 billion rows</text>
+<rect x="40" y="184" width="208" height="72" rx="8" class="x-box"/><text x="56" y="208" class="x-n">LIMS database</text><text x="56" y="224" class="x-s">Batch results</text><text x="56" y="240" class="x-s">Yield and purity per batch</text>
+<rect x="24" y="296" width="240" height="120" rx="8" class="x-zone"/><text x="40" y="318" class="x-zn">Microsoft Entra ID</text>
+<rect x="40" y="328" width="208" height="72" rx="8" class="x-box"/><text x="56" y="352" class="x-n">Security groups</text><text x="56" y="368" class="x-s">One per site</text><text x="56" y="384" class="x-s">For example SG-Site-Ghent</text>
+<rect x="290" y="204" width="180" height="72" rx="8" class="x-main"/><text x="306" y="228" class="x-n">Power BI workspace</text><text x="306" y="244" class="x-s">Fabric F64 capacity</text><text x="306" y="260" class="x-s">Semantic model + reports</text>
+<rect x="496" y="132" width="240" height="56" rx="8" class="x-box"/><text x="512" y="156" class="x-n">Site staff</text><text x="512" y="172" class="x-s">Own site’s data only</text>
+<rect x="496" y="212" width="240" height="56" rx="8" class="x-box"/><text x="512" y="236" class="x-n">New analysts</text><text x="512" y="252" class="x-s">Plain-language model guide</text>
+<rect x="496" y="292" width="240" height="56" rx="8" class="x-box"/><text x="512" y="316" class="x-n">External auditor</text><text x="512" y="332" class="x-s">One report, read-only</text>
+<g class="x-line"><path d="M248 132H270V228H290" marker-end="url(#fba)"/><path d="M248 220H290" marker-end="url(#fba)"/><path d="M248 364H270V252H290" marker-end="url(#fba)"/><path d="M470 240H496" marker-end="url(#fba)"/><path d="M483 240V160H496" marker-end="url(#fba)"/><path d="M483 240V320H496" marker-end="url(#fba)"/></g>
+</svg>`;
+
+const GOAL = 'A 15-year Orders table makes refresh slow. The model must contain only the last five years of orders and refresh as quickly as possible. The source is a SQL Server database that supports query folding.';
+
+const CASE = `<p><b>Overview.</b> Fabrikam Biotech Labs runs four manufacturing sites that produce enzymes. Its Power BI workspaces run on a Fabric F64 capacity.</p>
+${FB_SVG}
+<h3>Existing environment</h3><ul>
+<li>Bioreactor sensors write one reading per second to an Azure SQL Database (2 billion rows). Analysts only need daily figures per bioreactor.</li>
+<li>Batch results (yield, purity) live in the LIMS on Azure SQL Database.</li>
+<li>Each site already has a Microsoft Entra security group of its staff (for example SG-Site-Ghent).</li></ul>
+<h3>Requirements</h3><ul>
+<li>Staff must see only their own site’s data, using the existing security groups.</li>
+<li>Model size and refresh time must be kept to a minimum.</li>
+<li>A measure must show the variability of purity across all batches ever produced at a site.</li>
+<li>Unusual daily incubator temperatures must be flagged automatically, with possible explanations.</li>
+<li>New analysts need a plain-language description of what the semantic model contains.</li>
+<li>An external auditor must view one report only, with no ability to reshare it or build content.</li></ul>`;
+
+const Q = [
+{n:1,d:'P',type:'single',stem:'You connect Power BI Desktop to a published semantic model by using a live connection. You now need to add a small Excel table of regional targets to your report and relate it to the model. What happens when you select Make changes to this model?',options:['The semantic model is downloaded and converted to Import mode.','The connection becomes DirectQuery to the Power BI semantic model, creating a composite model.','The original semantic model in the service is modified to include the Excel table.','Power BI blocks the change because live connections are read-only.'],answer:1,key:'B',why:'Adding local data to a live-connected model converts it to DirectQuery for Power BI semantic models: a composite model. The remote model is not changed.'},
+{n:2,d:'P',type:'single',stem:'A report connects to Azure SQL Database. The database password was rotated, and the scheduled refresh in the service now fails with a credentials error. Where should you fix it?',options:['In Power BI Desktop, Data source settings, then republish','In the semantic model’s settings in the service, under Data source credentials','In the workspace settings, under Azure connections','In the on-premises data gateway’s connection list'],answer:1,key:'B',why:'Cloud sources without a gateway keep credentials in the semantic model’s Data source credentials. Gateway sources keep them on the gateway connection.'},
+{n:3,d:'P',type:'single',stem:'A 5 TB table lives in an Azure Synapse dedicated SQL pool. Company policy forbids storing copies of the data outside the source, and users need the latest data whenever they open the report. Which storage mode should you use for the table?',options:['Import','DirectQuery','Dual','Direct Lake'],answer:1,key:'B',why:'DirectQuery leaves data at the source and always queries current values. Direct Lake needs Delta tables in OneLake.'},
+{n:4,d:'P',type:'single',stem:'You import an Excel export in which the Region value appears only on the first row of each block, and the rows beneath it are null until the next region begins. You need Region on every row. Which transformation should you use?',options:['Replace Values','Fill Down','Remove Blank Rows','Group By'],answer:1,key:'B',why:'Fill Down copies the last non-null value into the nulls below it.'},
+{n:5,d:'P',type:'multi',pick:3,stem:'A City column contains “New York”, “new york”, “New York ” (trailing space) and “NY”. You need a single value, “New York”, in Power Query. Which three transformations should you apply?',options:['Trim','Capitalize Each Word','Replace Values “NY” with “New York”','Remove Duplicates','Split Column by Delimiter'],answer:[0,1,2],key:'A, B, C',why:'Power Query compares text case-sensitively and includes spaces. Trim, consistent casing and replacing the abbreviation give one value. Replace “NY” before Capitalize Each Word, which would turn it into “Ny”.'},
+{n:6,d:'P',type:'single',stem:'You need one row per customer with total sales amount and number of orders, calculated in Power Query. Which transformation should you use?',options:['Pivot Column on CustomerID','Group By with the Advanced option: group by CustomerID, Sum of Amount and Count Rows','Merge Queries with the Orders table','Add a custom column with List.Sum'],answer:1,key:'B',why:'Group By (Advanced) supports several aggregations in one step.'},
+{n:7,d:'P',type:'single',stem:'Finance drops one CSV file per month into a SharePoint folder. All files share the same columns. The report must include every file, including new ones, without editing the query. What should you do?',options:['Import each file and append the queries.','Use the SharePoint folder connector and Combine & Transform the files.','Import the newest file and use incremental refresh.','Merge the files on their common columns.'],answer:1,key:'B',why:'The folder connector picks up every file, including new ones, and Combine builds a sample-file function applied to each.'},
+{n:8,d:'P',type:'single',stem:'Two source systems both use ProductID values 1 to 5,000 for different products. You combine both product lists into one Product dimension. How should you ensure the relationship key to Sales is unique?',options:['Remove duplicate ProductID values.','Create a key that combines SourceSystem and ProductID, and build the same key in Sales.','Set the relationship to many-to-many.','Use the ProductName column as the key.'],answer:1,key:'B',why:'A composite (or surrogate) key makes each product unique across systems. Removing duplicates would discard real products.'},
+{n:9,d:'P',type:'seq',steps:2,stem:'An Excel sheet has field names in column A and values for each year in columns B to F. You need field names as column headers and one row per year. Which two actions should you perform, in order?',options:['Transpose','Unpivot Columns','Use First Row as Headers','Pivot Column','Reverse Rows'],answers:[[0,2]],key:'A, C',why:'Transpose swaps rows and columns; the field names then sit in the first row, ready to promote.'},
+{n:10,d:'M',type:'single',stem:'Customer and Product both have one-to-many relationships to Sales with single cross-filter direction. When users select a product in a slicer, the Customer slicer must list only customers who bought it. Which change is the exam-standard solution?',options:['Set the Customer–Sales relationship to cross-filter in Both directions.','Create a relationship between Customer and Product.','Mark Customer as a date table.','Change the Product–Sales relationship to one-to-one.'],answer:0,key:'A',why:'Both-direction filtering lets the Product filter flow through Sales to Customer. In practice, a measure-based visual filter on the slicer is a lighter alternative.'},
+{n:11,d:'M',type:'single',stem:'Customers can share bank accounts. You have the four tables shown in the exhibit: Customer, CustomerAccount (one row per customer–account pair), Account, and Transactions (by AccountID). A Customer slicer must filter Transactions. How should you configure the relationships?',exhibit:Q11_SVG,options:['Customer one-to-many CustomerAccount (single); Account one-to-many CustomerAccount, set to Both; Account one-to-many Transactions (single)','Customer one-to-many Transactions directly','Customer many-to-many Account with no bridge table','All relationships single direction, from Transactions towards Customer'],answer:0,key:'A',why:'A bridge table resolves many-to-many. The filter must pass from the bridge to Account, so that relationship needs Both.'},
+{n:12,d:'M',type:'single',stem:'A Month Name column sorts alphabetically (April, August, December…). What should you do?',options:['Change the column’s data type to Date.','Set Month Name’s Sort by column property to MonthNumber.','Sort the visual by Month Name descending.','Add MonthNumber to the visual’s tooltips.'],answer:1,key:'B',why:'Sort by column sorts one column by the values of another.'},
+{n:13,d:'M',type:'yn',stem:'For each statement about column properties, choose Yes if the statement is true. Otherwise, choose No.',statements:[{t:'Setting a column to Hidden removes it from the semantic model.',a:false},{t:'Setting a column’s data category to Web URL lets a table visual show the values as clickable links.',a:true},{t:'A column’s default summarization changes the result of explicit DAX measures that reference the column.',a:false}],key:'No, Yes, No',why:'Hidden columns stay in the model (usable in DAX). Web URL shows links. Default summarization only affects implicit measures.'},
+{n:14,d:'M',type:'single',stem:'Users need an Order Date slicer and a Ship Date slicer on the same page, both filtering Sales at the same time. Sales has OrderDate and ShipDate columns and one Date table. What should you do?',options:['Write USERELATIONSHIP measures for every metric.','Create a calculated table Ship Date = \'Date\' and create an active relationship from Sales[ShipDate] to it.','Make both relationships to Date active.','Set the Date–Sales relationships to Both.'],answer:1,key:'B',why:'Two slicers filtering at once need two active paths, so the role-playing dimension is duplicated as its own table.'},
+{n:15,d:'M',type:'single',stem:'A business user who does not write DAX needs a running total of sales by month. What is the fastest way to create it?',options:['A calculated column with EARLIER','A quick measure using the Running total calculation','A calculation group','A Power Query index column'],answer:1,key:'B',why:'Quick measures generate DAX from a dialog, including Running total.'},
+{n:16,d:'M',type:'blanks',stem:'Complete the measure so it returns each product’s share of total sales across the products currently selected in slicers, ignoring the product on each row of the table visual.',code:`% of Selected = DIVIDE ( [Sales], CALCULATE ( [Sales], [Blank 1] ( Product ) ) )`,blanks:[{options:['ALL','ALLSELECTED','VALUES','REMOVEFILTERS'],a:1}],key:'ALLSELECTED',why:'ALLSELECTED removes the row’s product filter but keeps slicer and filter-pane selections. ALL or REMOVEFILTERS would return share of the grand total.'},
+{n:17,d:'M',type:'blanks',stem:'Complete the measure so it returns sales for the three months ending on the last date in the current filter context.',code:`Sales Rolling 3M =
+CALCULATE (
+    [Sales],
+    [Blank 1] ( 'Date'[Date], [Blank 2] ( 'Date'[Date] ), -3, MONTH )
+)`,blanks:[{options:['DATESINPERIOD','DATESBETWEEN','PARALLELPERIOD'],a:0},{options:['MAX','MIN','TODAY'],a:0}],key:'DATESINPERIOD, MAX',why:'DATESINPERIOD returns a date window of a given length ending at a date; MAX gives the last date in context.'},
+{n:18,d:'M',type:'single',stem:'Performance Analyzer shows a matrix whose DAX query takes 9 seconds. You want to inspect the generated query and test a rewritten measure definition without changing the model. What should you do?',options:['Copy the query and run it in DAX query view, defining the new measure version in a DEFINE block.','Change the matrix to a table visual.','Export the visual’s data to Excel.','Enable Auto date/time.'],answer:0,key:'A',why:'DAX query view runs queries copied from Performance Analyzer and lets you define temporary measures to compare.'},
+{n:19,d:'V',type:'single',stem:'In a matrix showing sales by month, you need a running total column that exists only in that visual and is computed on the values already in the visual. What should you create?',options:['A visual calculation using RUNNINGSUM','A calculated column using EARLIER','A measure using TOTALYTD','A calculation group'],answer:0,key:'A',why:'Visual calculations operate on the visual’s own matrix of values and are not added to the model.'},
+{n:20,d:'V',type:'single',stem:'You need every report in the department to use the corporate colour palette and fonts, with minimal per-report effort. What should you do?',options:['Format each visual’s colours manually.','Create a JSON report theme and apply it with View > Themes > Browse for themes.','Set a canvas background image.','Use conditional formatting on every visual.'],answer:1,key:'B',why:'A JSON theme applies colours, fonts and visual defaults in one step and can be reused across reports.'},
+{n:21,d:'V',type:'single',stem:'Sales reps open a report on their phones. You need a phone-optimised arrangement of selected visuals without changing the desktop layout. What should you do?',options:['Change the page size to 9:16.','Use View > Mobile layout and arrange the visuals on the phone canvas.','Create a separate report for mobile.','Enable Personalize visuals.'],answer:1,key:'B',why:'Mobile layout is a separate phone canvas in the same report; the desktop layout is untouched.'},
+{n:22,d:'V',type:'multi',pick:3,stem:'Which three actions improve a report’s accessibility for screen-reader and keyboard users?',options:['Add alt text to each visual.','Set a logical tab order in the Selection pane.','Use markers or data labels so meaning does not depend on colour alone.','Turn on automatic page refresh.','Hide visual headers.'],answer:[0,1,2],key:'A, B, C',why:'Alt text, tab order and not relying on colour alone are core accessibility practices.'},
+{n:23,d:'V',type:'single',stem:'Report readers want to change a visual’s chart type and swap fields for their own view, without edit permission and without affecting other users. What should you enable?',options:['Edit interactions','Personalize visuals','Sync slicers','Bookmarks'],answer:1,key:'B',why:'Personalize visuals lets readers change visual type, fields and aggregations for themselves.'},
+{n:24,d:'V',type:'single',stem:'A DirectQuery report must update its visuals only when new orders arrive, checking every 5 minutes. Which setting meets this most efficiently?',options:['Scheduled refresh every 5 minutes','Automatic page refresh with change detection based on a measure such as MAX(Orders[OrderID])','Automatic page refresh with a fixed interval of 1 second','A Power Automate flow that refreshes the semantic model'],answer:1,key:'B',why:'Change detection checks a measure at the interval and refreshes visuals only when its value changes. It needs DirectQuery and Premium or Fabric capacity.'},
+{n:25,d:'V',type:'single',stem:'You need to group customers into 10-year age ranges from a numeric Age column for use in a histogram. What should you create?',options:['A list group','A bin group with a bin size of 10','A cluster','A hierarchy'],answer:1,key:'B',why:'Bins group numeric or date values into equal-sized ranges.'},
+{n:26,d:'V',type:'single',stem:'You need to flag unusual spikes in daily website visits and show possible explanations for each spike. What should you do?',options:['Add an average line in the Analytics pane of a line chart.','Turn on Find anomalies in the Analytics pane of a line chart.','Add error bars to a column chart.','Use a decomposition tree.'],answer:1,key:'B',why:'Anomaly detection marks outliers on a time-series line chart and offers possible explanations.'},
+{n:27,d:'V',type:'single',stem:'Users of a published report must be able to export the summarised data behind visuals but not the underlying detail rows. Where do you configure this for the report?',options:['Report settings > Export data: allow end users to export summarized data from the service','Workspace settings > License mode','The visual’s Filters pane, locked filters','Sensitivity labels'],answer:0,key:'A',why:'The report’s Export data setting controls summarised versus underlying data export (within limits set by tenant admins).'},
+{n:28,d:'S',type:'yn',stem:'For each statement about endorsement, choose Yes if the statement is true. Otherwise, choose No.',statements:[{t:'Any user with write permission on a semantic model can Promote it.',a:true},{t:'Any workspace Admin can Certify a semantic model, even if the tenant restricts certification to specific users.',a:false},{t:'Endorsed semantic models show a Promoted or Certified badge where users discover content.',a:true}],key:'Yes, No, Yes',why:'Promotion needs write permission. Certification is limited to users or groups the Fabric admin authorises. Endorsement shows as a badge so users can find trusted content.'},
+{n:29,d:'S',type:'single',stem:'A semantic model in a Pro workspace must refresh every hour during a 24-hour operation. What must you do?',options:['Configure 24 refresh times in the schedule.','Move the workspace to Premium Per User or a Fabric capacity, which allows up to 48 scheduled refreshes a day.','Install a second gateway.','Enable automatic page refresh.'],answer:1,key:'B',why:'Shared (Pro) capacity allows 8 scheduled refreshes a day; Premium, PPU and Fabric capacity allow 48.'},
+{n:30,d:'S',type:'single',stem:'Colleagues with Power BI Free licences must view a report through an app. What is required?',options:['Each colleague is added as a workspace Viewer.','The workspace is on a Fabric F64 or larger (or Premium P) capacity.','The report is shared with a link.','The report is published to the web.'],answer:1,key:'B',why:'Free users can view content only when it sits in Premium P or Fabric F64-or-larger capacity.'},
+{n:31,d:'S',type:'single',stem:'A team lead wants the Weekly KPI page emailed to the team every Monday at 08:00 with a PDF attachment. What should you configure?',options:['A data alert','A report subscription for that page with a PDF attachment','Publish to web','A dashboard pinned with a live page'],answer:1,key:'B',why:'Subscriptions send a page snapshot on a schedule, optionally with a PDF or PowerPoint attachment.'},
+{n:32,d:'P',type:'goal',stem:'Solution: Add a Filtered Rows step in Power Query that keeps OrderDate within the last five years, so the filter folds back to the source. Does this meet the goal?',options:['Yes','No'],answer:0,key:'Yes',why:'A folded filter means the source only returns five years, cutting refresh time and model size.'},
+{n:33,d:'P',type:'goal',stem:'Solution: Load all 15 years, then add a report-level filter that shows only the last five years. Does this meet the goal?',options:['Yes','No'],answer:1,key:'No',why:'All 15 years still load; the filter only hides rows in the report.'},
+{n:34,d:'P',type:'goal',stem:'Solution: Create RangeStart and RangeEnd parameters, filter OrderDate with them, and configure incremental refresh to store five years and refresh the last 10 days. Does this meet the goal?',options:['Yes','No'],answer:0,key:'Yes',why:'Incremental refresh keeps a five-year window and refreshes only recent partitions, which is faster still.'},
+{n:35,d:'M',type:'single',stem:'How should you handle the sensor readings?',options:['Import all readings and hide the Timestamp column.','Group the readings by bioreactor and date in Power Query, aggregating to daily values, before loading.','Use DirectQuery for the readings table.','Import all readings and create a calculated table of daily averages.'],answer:1,key:'B',why:'Reducing granularity to the grain analysts need cuts rows from 2 billion to thousands.'},
+{n:36,d:'S',type:'single',stem:'How should you implement site security?',options:['One role per site with a filter such as Site[SiteName] = “Ghent”, then add each site’s security group to its role in the service','Add each site’s group to a separate workspace with the Contributor role','Create a separate report per site with a page filter','Apply a sensitivity label per site'],answer:0,key:'A',why:'Role membership can use security groups. Workspace Contributors would bypass RLS.'},
+{n:37,d:'M',type:'blanks',stem:'Complete the measure for the purity variability requirement.',code:`Purity Variability = [Blank 1] ( Batches[Purity] )`,blanks:[{options:['STDEV.P','STDEV.S','VAR.S','MEDIAN'],a:0}],key:'STDEV.P',why:'All batches ever produced form the whole population, so use the population standard deviation.'},
+{n:38,d:'V',type:'single',stem:'Which feature meets the incubator temperature requirement?',options:['Anomaly detection on a line chart','A forecast on a line chart','A constant reference line at 37 °C','Clustering on a scatter chart'],answer:0,key:'A',why:'Anomaly detection flags unexpected values and lists possible explanations.'},
+{n:39,d:'V',type:'single',stem:'Which feature meets the new-analyst requirement with the least effort?',options:['Write a description for every table.','Use Copilot to summarize the underlying semantic model.','Add a narrative visual with Copilot to each page.','Add a decomposition tree to each page.'],answer:1,key:'B',why:'Copilot can summarise a semantic model’s tables, measures and contents in plain language.'},
+{n:40,d:'S',type:'single',stem:'How should you give the auditor access?',options:['Add the auditor to the workspace as a Viewer.','Share the report with the auditor, clearing Allow recipients to share and Allow recipients to build content.','Publish the report to the web and send the link.','Add the auditor to the app audience with Build permission.'],answer:1,key:'B',why:'Item-level sharing with reshare and build cleared is least privilege. A workspace Viewer sees every item in the workspace.'}
+];
+
+const KEY = 'pl300-mock' + EXAM.num + '-v1';
+
+/* ---------- state ---------- */
+function fresh(mode){ return {screen:'intro', mode:mode||'strict', answers:{}, flags:{}, n:1, sec:0, locked:{}, endAt:null, startedAt:null, finishedAt:null, timedOut:false, onlyMissed:false}; }
+function load(){ try { const v = localStorage.getItem(KEY); return v ? JSON.parse(v) : null; } catch(e){ return null; } }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
+let S = load() || fresh();
+
+/* ---------- helpers ---------- */
+const app = document.getElementById('app');
+const qOf = n => Q[n-1];
+const secOf = n => SECTIONS.findIndex(s => n >= s.from && n <= s.to);
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmt(s){ return esc(s).replace(/`([^`]+)`/g, '<code>$1</code>'); }
+function parts(q){ return q.type==='seq' ? q.steps : q.type==='blanks' ? q.blanks.length : q.type==='match' ? q.items.length : q.statements.length; }
+function status(q){
+  const a = S.answers[q.n];
+  if (a === undefined || a === null) return 0;
+  if (!Array.isArray(a)) return 2;
+  if (q.type === 'multi') return a.length === q.pick ? 2 : (a.length ? 1 : 0);
+  const f = a.filter(x => x !== null && x !== undefined).length;
+  return f === parts(q) ? 2 : (f ? 1 : 0);
+}
+function grade(q){
+  const a = S.answers[q.n];
+  let full = false, part = 0;
+  if (q.type === 'single' || q.type === 'goal'){ full = a === q.answer; part = full ? 1 : 0; }
+  else if (q.type === 'multi'){
+    const arr = a || []; const right = arr.filter(x => q.answer.includes(x)).length; const wrong = arr.length - right;
+    full = right === q.answer.length && wrong === 0; part = Math.max(0, right - wrong) / q.answer.length;
+  } else if (q.type === 'seq'){
+    const arr = a || [];
+    part = Math.max(...q.answers.map(alt => alt.filter((x,i) => arr[i] === x).length / alt.length));
+    full = part === 1;
+  } else if (q.type === 'blanks'){
+    const arr = a || []; part = q.blanks.filter((b,i) => arr[i] === b.a).length / q.blanks.length; full = part === 1;
+  } else if (q.type === 'match'){
+    const arr = a || []; part = q.items.filter((s,i) => arr[i] === s.a).length / q.items.length; full = part === 1;
+  } else if (q.type === 'yn'){
+    const arr = a || []; part = q.statements.filter((s,i) => arr[i] === s.a).length / q.statements.length; full = part === 1;
+  }
+  const pts = S.mode === 'partial' ? part : (full ? 1 : 0);
+  return {full, part, pts, answered: status(q) > 0};
+}
+function userText(q){
+  const a = S.answers[q.n];
+  if (status(q) === 0) return 'No answer';
+  const dash = '–';
+  if (q.type === 'single') return `${L[a]}. ${q.options[a]}`;
+  if (q.type === 'goal') return q.options[a];
+  if (q.type === 'multi') return a.slice().sort((x,y)=>x-y).map(i => L[i]).join(', ');
+  if (q.type === 'seq') return a.map(x => x === null || x === undefined ? dash : L[x]).join(', ');
+  if (q.type === 'blanks') return a.map((x,i) => x === null || x === undefined ? dash : q.blanks[i].options[x]).join(', ');
+  if (q.type === 'match') return a.map((x,i) => `${i+1}-${x === null || x === undefined ? dash : L[x]}`).join(', ');
+  if (q.type === 'yn') return a.map(x => x === null || x === undefined ? dash : (x ? 'Yes' : 'No')).join(', ');
+  return '';
+}
+function fmtTime(ms){ const t = Math.max(0, Math.round(ms/1000)); return `${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`; }
+function canGo(n){
+  if (S.screen !== 'exam' && S.screen !== 'secreview') return false;
+  const s = secOf(n); return s === S.sec && SECTIONS[s].free;
+}
+
+/* ---------- answer sheet ---------- */
+function sheet(mode){
+  let h = `<aside class="side"><div class="sheet"><h2>Answer sheet</h2>`;
+  h += mode === 'results' ? `<p class="sub">Select a question to see its explanation.</p>` : mode === 'intro' ? `<p class="sub">40 questions in three sections, taken in order.</p>` : `<p class="sub">${Q.filter(q => status(q) === 2).length} of 40 answered</p>`;
+  SECTIONS.forEach((sec, si) => {
+    h += `<div class="grp"><p>${sec.name}: ${sec.label.toLowerCase()}</p><div class="cells">`;
+    for (let n = sec.from; n <= sec.to; n++){
+      const q = qOf(n); let cls = 'cell', dis = false, lab = `Question ${n}`;
+      if (mode === 'results'){
+        const g = grade(q); cls += g.full ? ' ok' : (g.part > 0 ? ' half' : ' no');
+        lab += g.full ? ', correct' : (g.part > 0 ? ', partly right' : ', not right');
+      } else {
+        const st = status(q); if (st === 2) { cls += ' ans'; lab += ', answered'; } else if (st === 1) { cls += ' part'; lab += ', partly answered'; }
+        if (S.flags[n]) { cls += ' flag'; lab += ', flagged'; }
+        if (mode === 'exam' && S.screen === 'exam' && n === S.n) { cls += ' cur'; lab += ', current'; }
+        dis = mode === 'intro' || !canGo(n);
+      }
+      const act = mode === 'results' ? 'jump' : 'goto';
+      h += `<button type="button" class="${cls}" data-act="${act}" data-n="${n}" aria-label="${lab}" ${dis ? 'disabled' : ''}><span>${n}</span></button>`;
+    }
+    h += `</div></div>`;
+  });
+  if (mode === 'results'){
+    h += `<ul class="legend"><li><span class="dot ok"></span>Correct</li><li><span class="dot half"></span>Partly right</li><li><span class="dot no"></span>Not right or not answered</li></ul>`;
+  } else {
+    h += `<ul class="legend"><li><span class="dot ans"></span>Answered</li><li><span class="dot flag"></span>Flagged for review</li><li><span class="dot"></span>Not answered yet</li></ul>`;
+    if (mode === 'exam') h += `<button type="button" class="btn quiet small" data-act="finish">Finish exam now</button>`;
+  }
+  return h + `</div></aside>`;
+}
+
+/* ---------- screens ---------- */
+function renderIntro(){
+  const saved = S.startedAt && !S.finishedAt;
+  let h = `<div class="layout"><main class="main">`;
+  h += `<h1>Mock Exam ${EXAM.num}</h1><p class="lead">Microsoft PL-300 Power BI Data Analyst practice. 40 questions, 80 minutes, closed book. Aim for 30 or more.</p>`;
+  h += `<ul class="rules">
+    <li><div><b>Section 1</b>Questions 1–31</div><div>Move freely between questions and flag any you want to revisit. When you end the section, you can’t return to it.</div></li>
+    <li><div><b>Goal series</b>Questions 32–34</div><div>The same goal with three different solutions. Each answer is final once you continue.</div></li>
+    <li><div><b>Case study</b>Questions 35–40</div><div>Read the scenario, then answer six questions about it. Move freely within the case study, then finish the exam.</div></li>
+    <li><div><b>Timer</b>80 minutes</div><div>The exam is submitted automatically when time runs out. Progress is saved in this browser if you close the page.</div></li>
+  </ul>`;
+  if (saved){
+    h += `<p>You have an exam in progress with ${fmtTime(S.endAt - Date.now())} left.</p><div class="actions"><button class="btn primary" data-act="resume">Resume exam</button><button class="btn" data-act="restart">Start over</button></div>`;
+  } else {
+    h += `<fieldset class="mode"><legend>Scoring</legend>
+      <label class="choice"><input type="radio" name="mode" value="strict" data-k="mode" ${S.mode !== 'partial' ? 'checked' : ''}><span>Strict<small>A multi-part question scores only when every part is right.</small></span></label>
+      <label class="choice"><input type="radio" name="mode" value="partial" data-k="mode" ${S.mode === 'partial' ? 'checked' : ''}><span>Partial credit<small>Each correct part earns its share of the point, closer to how the live exam scores.</small></span></label>
+    </fieldset><div class="actions"><button class="btn primary" data-act="start">Start exam</button></div>`;
+  }
+  return h + `</main>${sheet('intro')}</div>`;
+}
+
+function hint(q){
+  return q.hint || {single:'Choose one answer.', goal:'Choose Yes or No. After you continue, you can’t return to this question.', multi:`Choose ${q.pick === 2 ? 'two' : 'three'} answers. Each correct answer presents part of the solution.`, seq:`Choose an action for each of the ${q.steps} steps, in order. Not every action is used.`, blanks:'Choose the correct option for each blank.', yn:'Answer each statement on its own.'}[q.type];
+}
+
+function body(q){
+  const a = S.answers[q.n];
+  if (q.type === 'single' || q.type === 'goal'){
+    return `<fieldset class="opts"><legend class="sr">Answer options</legend>${q.options.map((o,i) => `<label class="opt"><input type="radio" id="q${q.n}-${i}" name="q${q.n}" value="${i}" data-k="single" ${a === i ? 'checked' : ''}><span class="bub" aria-hidden="true">${L[i]}</span><span class="otext${q.code ? ' mono' : ''}">${fmt(o)}</span></label>`).join('')}</fieldset>`;
+  }
+  if (q.type === 'multi'){
+    const arr = a || [];
+    return `<fieldset class="opts"><legend class="sr">Choose ${q.pick}</legend>${q.options.map((o,i) => { const on = arr.includes(i); const dis = !on && arr.length >= q.pick; return `<label class="opt"><input type="checkbox" id="q${q.n}-${i}" value="${i}" data-k="multi" ${on ? 'checked' : ''} ${dis ? 'disabled' : ''}><span class="bub sq" aria-hidden="true">${L[i]}</span><span class="otext">${fmt(o)}</span></label>`; }).join('')}</fieldset><p class="note">${arr.length} of ${q.pick} chosen.</p>`;
+  }
+  if (q.type === 'seq'){
+    const arr = a || [];
+    let h = `<ul class="actionlist">${q.options.map((o,i) => `<li><b>${L[i]}</b><span>${fmt(o)}</span></li>`).join('')}</ul>`;
+    for (let j = 0; j < q.steps; j++){
+      h += `<div class="pick"><label for="q${q.n}-p${j}">Step ${j+1}</label><select id="q${q.n}-p${j}" data-k="seq" data-j="${j}"><option value="">Choose an action</option>${q.options.map((o,i) => { const used = arr.includes(i) && arr[j] !== i; return `<option value="${i}" ${arr[j] === i ? 'selected' : ''} ${used ? 'disabled' : ''}>${L[i]}. ${esc(o)}</option>`; }).join('')}</select></div>`;
+    }
+    return h;
+  }
+  if (q.type === 'blanks'){
+    const arr = a || [];
+    let code = esc(q.code).replace(/\[Blank (\d)\]/g, '<mark class="blank">[Blank $1]</mark>');
+    let h = `<pre class="code">${code}</pre>`;
+    q.blanks.forEach((b,j) => {
+      h += `<div class="pick"><label for="q${q.n}-b${j}">Blank ${j+1}</label><select id="q${q.n}-b${j}" data-k="blank" data-j="${j}"><option value="">Choose an option</option>${b.options.map((o,i) => `<option value="${i}" ${arr[j] === i ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select></div>`;
+    });
+    return h;
+  }
+  if (q.type === 'match'){
+    const arr = a || [];
+    let h = `<ul class="actionlist">${q.choices.map((o,i) => `<li><b>${L[i]}</b><span>${fmt(o)}</span></li>`).join('')}</ul>`;
+    q.items.forEach((it,j) => {
+      h += `<div class="pick wide"><label for="q${q.n}-m${j}">${j+1}. ${fmt(it.t)}</label><select id="q${q.n}-m${j}" data-k="blank" data-j="${j}"><option value="">Choose an option</option>${q.choices.map((o,i) => `<option value="${i}" ${arr[j] === i ? 'selected' : ''}>${L[i]}. ${esc(o)}</option>`).join('')}</select></div>`;
+    });
+    return h;
+  }
+  if (q.type === 'yn'){
+    const arr = a || [];
+    return q.statements.map((s,j) => `<div class="yn" role="radiogroup" aria-label="Statement ${j+1}"><p>${j+1}. ${fmt(s.t)}</p><div class="ynopts"><label class="pill"><input type="radio" id="q${q.n}-s${j}-y" name="q${q.n}-s${j}" value="1" data-k="yn" data-j="${j}" ${arr[j] === true ? 'checked' : ''}>Yes</label><label class="pill"><input type="radio" id="q${q.n}-s${j}-n" name="q${q.n}-s${j}" value="0" data-k="yn" data-j="${j}" ${arr[j] === false ? 'checked' : ''}>No</label></div></div>`).join('');
+  }
+  return '';
+}
+
+function renderExam(){
+  const q = qOf(S.n), sec = SECTIONS[S.sec];
+  let h = `<div class="layout"><main class="main">`;
+  if (sec.name === 'Goal series'){
+    h += `<div class="panel goal"><h2>Goal series</h2><p>Each question presents the same goal with a different solution. Decide whether the solution meets the goal.</p><p style="margin:0"><b>Goal:</b> ${fmt(GOAL)}</p></div>`;
+  }
+  if (sec.name === 'Case study'){
+    h += `<details class="panel" ${S.caseClosed ? '' : 'open'} id="casepanel"><summary>Case study: ${EXAM.caseTitle}</summary>${CASE}</details>`;
+  }
+  h += `<div class="qhead"><p class="qnum">Question ${q.n} of 40</p>${sec.free ? `<button type="button" class="flagbtn" data-act="flag" aria-pressed="${!!S.flags[q.n]}">${S.flags[q.n] ? 'Flagged for review' : 'Flag for review'}</button>` : ''}</div>`;
+  h += `<p class="hint">${hint(q)}</p><div class="stem">${fmt(q.stem)}</div>${q.exhibit || ''}${body(q)}`;
+  h += `<div class="actions">`;
+  if (sec.free){
+    h += `<button class="btn" data-act="prev" ${S.n === sec.from ? 'disabled' : ''}>Previous</button><span class="spacer"></span>`;
+    h += S.n === sec.to ? `<button class="btn primary" data-act="secreview">Review ${sec.name === 'Case study' ? 'case study' : 'section'}</button>` : `<button class="btn primary" data-act="next">Next</button>`;
+  } else {
+    h += `<span class="spacer"></span><button class="btn primary" data-act="goalnext">Save answer and continue</button>`;
+  }
+  h += `</div></main>${sheet('exam')}</div>`;
+  return h;
+}
+
+function renderSecReview(){
+  const sec = SECTIONS[S.sec];
+  const qs = Q.filter(q => q.n >= sec.from && q.n <= sec.to);
+  const done = qs.filter(q => status(q) === 2).length;
+  const unanswered = qs.filter(q => status(q) < 2).map(q => q.n);
+  const flagged = qs.filter(q => S.flags[q.n]).map(q => q.n);
+  const last = S.sec === SECTIONS.length - 1;
+  let h = `<div class="layout"><main class="main"><h1 style="font-size:clamp(32px,5vw,44px)">Review ${sec.name === 'Case study' ? 'the case study' : sec.name}</h1>`;
+  h += `<p class="lead">You have answered ${done} of ${qs.length} questions in this ${sec.name === 'Case study' ? 'case study' : 'section'}. Select any question on the answer sheet to return to it.</p>`;
+  if (unanswered.length) h += `<p><b>Not fully answered:</b> ${unanswered.join(', ')}</p>`;
+  if (flagged.length) h += `<p><b>Flagged for review:</b> ${flagged.join(', ')}</p>`;
+  h += `<div class="actions"><button class="btn" data-act="goto" data-n="${sec.to}">Back to question ${sec.to}</button><span class="spacer"></span><button class="btn primary" data-act="endsec">${last ? 'Finish exam' : 'End section'}</button></div>`;
+  return h + `</main>${sheet('exam')}</div>`;
+}
+
+function renderResults(){
+  let total = 0; const per = {};
+  Object.keys(DOM).forEach(k => per[k] = {got:0, of:0});
+  Q.forEach(q => { const g = grade(q); total += g.pts; per[q.d].got += g.pts; per[q.d].of += 1; });
+  const shown = S.mode === 'partial' ? (Math.round(total*10)/10).toFixed(1) : String(Math.round(total));
+  const cls = total >= PASS ? 'pass' : total >= 26 ? 'close' : 'fail';
+  const msg = total >= PASS ? 'On track. 30 or more is the target for exam day.' : total >= 26 ? 'Close. Drill your weakest domain below before the next mock.' : ('Below target. ' + (EXAM.next ? 'Redo the questions you missed before you take ' + EXAM.next + '.' : 'Redo the questions you missed and reread the cheat sheet before the exam.'));
+  const used = S.finishedAt && S.startedAt ? fmtTime(Math.min(S.finishedAt, S.endAt) - S.startedAt) : '';
+  let h = `<div class="layout"><main class="main"><h2>Your score</h2><div class="score">${shown}<small> / 40</small></div>`;
+  h += `<p class="verdict ${cls}">${msg}</p><p style="color:var(--muted)">${S.mode === 'partial' ? 'Partial-credit scoring' : 'Strict scoring'}${used ? `, time used ${used}` : ''}.${S.timedOut ? ' Time ran out, so the exam was submitted automatically.' : ''}</p>`;
+  h += `<div class="domains">`;
+  Object.keys(DOM).forEach(k => {
+    const p = per[k]; const pct = p.of ? p.got / p.of : 0;
+    const g = S.mode === 'partial' ? (Math.round(p.got*10)/10).toFixed(1) : Math.round(p.got);
+    h += `<div class="drow"><b>${DOM[k]}</b><span class="val">${g} / ${p.of}</span><div class="track" role="img" aria-label="${Math.round(pct*100)} percent"><div class="fill${pct < .75 ? ' low' : ''}" style="width:${Math.round(pct*100)}%"></div></div></div>`;
+  });
+  h += `</div><p class="note">Domains under 75% are marked in red; spend your next review session on those.</p>`;
+  h += `<div class="actions"><button class="btn primary" data-act="review">Review answers</button><button class="btn" data-act="retake">Retake exam</button></div>`;
+  return h + `</main>${sheet('results')}</div>`;
+}
+
+function renderReview(){
+  let h = `<div class="layout"><main class="main"><h1 style="font-size:clamp(32px,5vw,44px)">Review answers</h1>`;
+  h += `<label class="filter"><input type="checkbox" data-k="onlymissed" ${S.onlyMissed ? 'checked' : ''}>Show only questions you didn’t get fully right</label>`;
+  Q.forEach(q => {
+    const g = grade(q);
+    if (S.onlyMissed && g.full) return;
+    const c = g.full ? 'ok' : (g.part > 0 ? 'half' : 'no');
+    const tag = g.full ? 'Correct' : !g.answered ? 'Not answered' : g.part > 0 ? 'Partly right' : 'Incorrect';
+    h += `<article class="rcard ${c}" id="r${q.n}"><div class="rtop"><b>Question ${q.n}, ${DOM[q.d]}</b><span class="tag ${c}">${tag}</span></div>`;
+    if (q.type === 'goal') h += `<p class="rstem" style="color:var(--muted)">Goal: ${fmt(GOAL)}</p>`;
+    h += `<p class="rstem">${fmt(q.stem)}</p>${q.exhibit || ''}`;
+    if (q.type === 'blanks') h += `<pre class="code">${esc(q.code).replace(/\[Blank (\d)\]/g, '<mark class="blank">[Blank $1]</mark>')}</pre>`;
+    if (q.type === 'single' || q.type === 'multi' || q.type === 'seq') h += `<ul class="actionlist">${q.options.map((o,i) => `<li><b>${L[i]}</b><span class="${q.code ? 'mono' : ''}">${fmt(o)}</span></li>`).join('')}</ul>`;
+    if (q.type === 'yn') h += `<ul class="actionlist">${q.statements.map((s,i) => `<li><b>${i+1}</b><span>${fmt(s.t)}</span></li>`).join('')}</ul>`;
+    if (q.type === 'match') h += `<ul class="actionlist">${q.items.map((s,i) => `<li><b>${i+1}</b><span>${fmt(s.t)}</span></li>`).join('')}</ul><ul class="actionlist">${q.choices.map((o,i) => `<li><b>${L[i]}</b><span>${fmt(o)}</span></li>`).join('')}</ul>`;
+    h += `<dl class="ans-grid"><dt>Your answer</dt><dd>${esc(userText(q))}</dd><dt>Correct answer</dt><dd>${esc(q.key)}</dd></dl>`;
+    h += `<p class="why">${fmt(q.why)}</p>${q.extra || ''}</article>`;
+  });
+  h += `<div class="actions"><button class="btn primary" data-act="results">Back to score</button><button class="btn" data-act="retake">Retake exam</button></div>`;
+  return h + `</main>${sheet('results')}</div>`;
+}
+
+function render(){
+  const map = {intro:renderIntro, exam:renderExam, secreview:renderSecReview, results:renderResults, review:renderReview};
+  app.innerHTML = (map[S.screen] || renderIntro)();
+  document.getElementById('clock').hidden = !(S.screen === 'exam' || S.screen === 'secreview');
+  const cp = document.getElementById('casepanel');
+  if (cp) cp.addEventListener('toggle', () => { S.caseClosed = !cp.open; save(); });
+  tick();
+}
+
+/* ---------- dialog ---------- */
+const dlg = document.getElementById('dlg');
+let onOk = null;
+function ask(title, text, okLabel, fn){
+  document.getElementById('dlg-t').textContent = title;
+  document.getElementById('dlg-p').textContent = text;
+  document.getElementById('dlg-ok').textContent = okLabel;
+  onOk = fn;
+  if (dlg.showModal) dlg.showModal(); else fn();
+}
+document.getElementById('dlg-no').addEventListener('click', () => dlg.close());
+document.getElementById('dlg-ok').addEventListener('click', () => { dlg.close(); const f = onOk; onOk = null; if (f) f(); });
+
+/* ---------- flow ---------- */
+function go(screen, n){ S.screen = screen; if (n) S.n = n; save(); render(); window.scrollTo({top:0}); }
+function finish(timedOut){
+  if (S.finishedAt) return;
+  S.finishedAt = Date.now(); S.timedOut = !!timedOut; go('results');
+}
+function nextSection(){
+  S.sec += 1; go('exam', SECTIONS[S.sec].from);
+}
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if (!b || b.disabled) return;
+  const act = b.dataset.act, n = +b.dataset.n;
+  if (act === 'start'){ const now = Date.now(); S = Object.assign(fresh(S.mode), {screen:'exam', startedAt:now, endAt:now + MINUTES*60000}); go('exam', 1); }
+  else if (act === 'resume'){ go(S.screen === 'intro' ? 'exam' : S.screen); }
+  else if (act === 'restart'){ ask('Start over?', 'Your answers and remaining time for this attempt will be cleared.', 'Start over', () => { S = fresh(S.mode); go('intro'); }); }
+  else if (act === 'next'){ go('exam', S.n + 1); }
+  else if (act === 'prev'){ go('exam', S.n - 1); }
+  else if (act === 'goto'){ if (canGo(n)) go('exam', n); }
+  else if (act === 'flag'){ S.flags[S.n] = !S.flags[S.n]; save(); render(); }
+  else if (act === 'secreview'){ go('secreview'); }
+  else if (act === 'goalnext'){
+    const doIt = () => { S.locked[S.n] = true; if (S.n < SECTIONS[S.sec].to) go('exam', S.n + 1); else nextSection(); };
+    if (status(qOf(S.n)) === 0) ask('Continue without an answer?', 'You can’t return to this question after you continue.', 'Continue', doIt); else doIt();
+  }
+  else if (act === 'endsec'){
+    const sec = SECTIONS[S.sec];
+    if (S.sec === SECTIONS.length - 1) ask('Finish the exam?', 'Your answers will be scored and you can’t change them afterwards.', 'Finish exam', () => finish(false));
+    else ask(`End ${sec.name}?`, `You won’t be able to return to ${sec.label.toLowerCase()}.`, 'End section', nextSection);
+  }
+  else if (act === 'finish'){ ask('Finish the exam now?', 'Unanswered questions score zero, and you can’t change answers afterwards.', 'Finish exam', () => finish(false)); }
+  else if (act === 'review'){ go('review'); }
+  else if (act === 'results'){ go('results'); }
+  else if (act === 'jump'){ S.onlyMissed = false; S.screen = 'review'; save(); render(); const el = document.getElementById('r' + n); if (el) el.scrollIntoView(); }
+  else if (act === 'retake'){ ask('Retake the exam?', 'Your score and answers from this attempt will be cleared.', 'Retake', () => { S = fresh(S.mode); go('intro'); }); }
+});
+
+document.addEventListener('change', e => {
+  const t = e.target, k = t.dataset.k; if (!k) return;
+  if (k === 'mode'){ S.mode = t.value; save(); return; }
+  if (k === 'onlymissed'){ S.onlyMissed = t.checked; save(); render(); return; }
+  if (S.screen !== 'exam') return;
+  const q = qOf(S.n); let a = S.answers[q.n];
+  if (k === 'single') a = +t.value;
+  else if (k === 'multi') a = [...app.querySelectorAll('input[data-k="multi"]:checked')].map(x => +x.value);
+  else {
+    a = Array.isArray(a) ? a.slice() : Array(parts(q)).fill(null);
+    const j = +t.dataset.j;
+    if (k === 'yn') a[j] = t.value === '1';
+    else a[j] = t.value === '' ? null : +t.value;
+  }
+  S.answers[q.n] = a; save();
+  const id = t.id, y = window.scrollY; render(); window.scrollTo({top:y});
+  const el = id && document.getElementById(id); if (el) el.focus({preventScroll:true});
+});
+
+/* ---------- timer ---------- */
+function tick(){
+  if (!(S.screen === 'exam' || S.screen === 'secreview') || !S.endAt) return;
+  const left = S.endAt - Date.now();
+  if (left <= 0){ finish(true); return; }
+  const el = document.getElementById('timer'); if (el) el.textContent = fmtTime(left);
+  document.getElementById('clock').classList.toggle('low', left < 10*60000);
+}
+setInterval(tick, 1000);
+render();
+</script>
+</body>
+</html>
