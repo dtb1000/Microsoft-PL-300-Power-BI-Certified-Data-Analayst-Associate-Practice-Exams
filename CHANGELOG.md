@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0 (9 November 2026)
+
+Added a question bank (`question-bank.html`) with 520 questions and instant feedback.
+
+- 120 new practice questions that appear only in the bank (Prepare 32, Model 32, Visualize 32, Manage 24), plus all 400 mock exam questions as an option.
+- Each answer is marked as soon as it's submitted, with the correct options highlighted and the explanation shown.
+- Filters for domain, question source, unanswered, not right last time and flagged questions; random or fixed order; sessions of 10, 20, 40 or all matching questions.
+- Saved progress by domain, flags, and a session summary with a "Practise these again" option.
+- Mocks 6–10: code-completion dropdowns now rotate their options, so the correct option is no longer usually listed first. Correct answers are unchanged.
+- The landing page links to the question bank.
+
 ## 1.1.0 (9 November 2026)
 
 Added Mock Exams 6–10 (200 new questions), written against the PL-300 skills measured as of April 20, 2026.
