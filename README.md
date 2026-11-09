@@ -2,7 +2,7 @@
 
 Five free, timed, interactive practice exams for **Microsoft Exam PL-300: Microsoft Power BI Data Analyst**. Each exam runs in the browser as a single HTML file, with no installation, sign-in or server-side code.
 
-**Currency of the material:** the questions follow the PL-300 \*skills measured as of April 20, 2026\*. They were last reviewed on **9 November 2026**, against the official study guide (page last updated 30 October 2026). At that point no newer skills outline had been announced. The material is intended to be current through **December 2026**, but Microsoft updates the exam periodically. Check the \[study guide's change log](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/pl-300) before relying on it after that date.
+**Currency of the material:** The questions follow the PL-300 '*skills measured as of April 20, 2026*.' They were last reviewed on **9 November 2026**, against the official study guide (page last updated 30 October 2026). At that point no newer skills outline had been announced. The material is intended to be current through **December 2026**, but Microsoft updates the exam periodically. Check the [study guide's change log] (https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/pl-300) before relying on it after that date.
 
 ## Contents
 
